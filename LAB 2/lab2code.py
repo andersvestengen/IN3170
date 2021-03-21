@@ -22,13 +22,6 @@ plt.savefig('t1_p1.png', dpi=100)
 plt.show()
 
 ##########################################################################
-
-#Task 2, computing voltage gain
-key3 = np.asarray(np.where(0.6 <= Xrange2)).astype('int')
-print("Inverter 2Whats my intial V_I?:", Xrange2[key3[0,0]])
-print("Inverter 2Voltage gain:", (Yrange2[key3[0,1]] - Yrange2[key3[0,0]])/(Xrange2[key3[0,1]] - Xrange2[key3[0,0]]))
-
-##########################################################################
 #task 1 part 2 sweep
 
 with open('t1_p2.csv')as f:
@@ -46,6 +39,11 @@ plt.title('CMOS inverter with inverted geometries')
 plt.savefig('t1_p2.png', dpi=100)
 plt.show()
 ##########################################################################
+
+#Task 2, computing voltage gain
+key2 = np.asarray(np.where(0.6 <= Xrange1)).astype('int')
+print("inverter 1 Whats my intial V_I?:", Xrange1[key2[0,0]])
+print("inverter 1 Voltage gain:", (Yrange1[key2[0,1]] - Yrange1[key2[0,0]])/(Xrange1[key2[0,1]] - Xrange1[key2[0,0]]))
 
 #Task 2, computing voltage gain
 key3 = np.asarray(np.where(0.6 <= Xrange2)).astype('int')
@@ -74,7 +72,7 @@ plt.show()
 with open('t3_inverter2.csv')as f:
     data = np.asarray(list(csv.reader(f, delimiter=',')))
 
-thing = int(0.5*int(len(Xrange32)))
+
 Xrange32 = np.asarray(data[1:,0]).astype('float')
 Yrange32 = np.asarray(data[1:,1]).astype('float') 
 fig1 = plt.plot(Xrange32, Yrange32)
@@ -96,7 +94,7 @@ Vomin322 = np.asarray(np.where(0.6 > Yrange32[thing:])).astype('int')
 Vomax311 = np.asarray(np.where(1.2 <= Yrange31[thing:])).astype('int')
 Vomin311 = np.asarray(np.where(0.6 > Yrange31[thing:])).astype('int')
 
-
+"""
 print(Yrange32[Vomin32[0,0]])
 print(Vomin32[0,0])
 print(Yrange32[Vomax32[0,0]])
@@ -120,7 +118,9 @@ print(Yrange31[Vomin311[0,0]+thing])
 print(Vomin311[0,0]+thing)
 print(" ")
 
+"""
 
+print(" ")
 t_PLH1 = Xrange32[Vomin32[0,0]] - Xrange32[Vomax32[0,0]]
 t_PHL1 = Xrange32[Vomin322[0,0]+thing] - Xrange32[Vomax322[0,0]+thing]
 
