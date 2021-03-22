@@ -66,6 +66,28 @@ plt.ylabel('V_o')
 plt.title('CMOS inverters 1 in series')
 plt.savefig('t3_p1.png', dpi=100)
 plt.show()
+
+
+#task 3 part 1 sweep HL and LH zoom
+
+with open('t3_inverter1.csv')as f:
+    data = np.asarray(list(csv.reader(f, delimiter=',')))
+
+
+Xrange31 = np.asarray(data[1:,0]).astype('float')
+Yrange31 = np.asarray(data[1:,1]).astype('float') 
+fig1LH = plt.plot(Xrange31[:35], Yrange31[:35])
+plt.xlabel('time [S]')
+plt.ylabel('V_o')
+plt.title('CMOS inverters 1 LH')
+plt.savefig('t3_p1_LH.png', dpi=100)
+plt.show()
+fig1HL = plt.plot(Xrange31[5025:5060], Yrange31[5025:5060])
+plt.xlabel('time [S]')
+plt.ylabel('V_o')
+plt.title('CMOS inverters 1 HL')
+plt.savefig('t3_p1_HL.png', dpi=100)
+plt.show()
 ##########################################################################
 #task 3 part 2 sweep
 
@@ -80,6 +102,28 @@ plt.xlabel('time [S]')
 plt.ylabel('V_o')
 plt.title('CMOS inverters 2 in series')
 plt.savefig('t3_p2.png', dpi=100)
+plt.show()
+
+
+#task 3 part 2 sweep HL and LH zoom
+
+with open('t3_inverter2.csv')as f:
+    data = np.asarray(list(csv.reader(f, delimiter=',')))
+
+
+Xrange32 = np.asarray(data[1:,0]).astype('float')
+Yrange32 = np.asarray(data[1:,1]).astype('float') 
+fig1LH = plt.plot(Xrange32[:45], Yrange32[:45])
+plt.xlabel('time [S]')
+plt.ylabel('V_o')
+plt.title('CMOS inverters 2 LH')
+plt.savefig('t3_p2_LH.png', dpi=100)
+plt.show()
+fig1HL = plt.plot(Xrange32[5025:5070], Yrange32[5025:5070])
+plt.xlabel('time [S]')
+plt.ylabel('V_o')
+plt.title('CMOS inverters 2 HL')
+plt.savefig('t3_p2_HL.png', dpi=100)
 plt.show()
 ##########################################################################
 
@@ -106,7 +150,7 @@ print(Yrange31[Vomax31[0,0]])
 print(Vomax31[0,0])
 
 
-print(" ")
+print("These are the High to low: ")
 print(Yrange32[Vomax322[0,0]+thing])
 print(Vomax322[0,0]+thing)
 print(Yrange32[Vomin322[0,0]+thing])
@@ -117,16 +161,14 @@ print(Vomax311[0,0]+thing)
 print(Yrange31[Vomin311[0,0]+thing])
 print(Vomin311[0,0]+thing)
 print(" ")
-
 """
 
-print(" ")
-t_PLH1 = Xrange32[Vomin32[0,0]] - Xrange32[Vomax32[0,0]]
-t_PHL1 = Xrange32[Vomin322[0,0]+thing] - Xrange32[Vomax322[0,0]+thing]
+t_PLH2 = Xrange32[Vomin32[0,0]] - Xrange32[0]
+t_PHL2 = Xrange32[Vomin322[0,0]+thing] - Xrange32[Vomax322[0,0]+thing]
 
 
-t_PLH2 = Xrange31[Vomin31[0,0]] - Xrange31[Vomax31[0,0]]
-t_PHL2 = Xrange31[Vomin311[0,0]+thing] - Xrange31[Vomax311[0,0]+thing]
+t_PLH1 = Xrange31[Vomin31[0,0]] - Xrange31[0]
+t_PHL1 = Xrange31[Vomin311[0,0]+thing] - Xrange31[Vomax311[0,0]+thing]
 
 print("inverter1 LH, HL", t_PLH1*1e12, t_PHL1*1e12, "p S (pico seconds)")
 print("inverter2 LH, HL", t_PLH2*1e12, t_PHL2*1e12, "p S (pico seconds)")
@@ -136,4 +178,4 @@ tp2 = 0.5*(t_PHL2 + t_PLH2)
 print("tp inverter1:", tp1*1e12, "p S (pico seconds)")
 print("tp inverter2:", tp2*1e12, "p S (pico seconds)")
 print(" ")
-print("tp ratio inv2/inv1:", tp1/tp2, "times")
+print("tp ratio inv2/inv1:", tp2/tp1, "times")
